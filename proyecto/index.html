@@ -1,14 +1,118 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>proyecto</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <div id="menu"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pato Pato Ganso — TVMaze App</title>
+
+  <link rel="stylesheet" href="src/style.css">
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+
+    // TODO: Pega aquí tu configuración real de Firebase
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_DOMAIN.firebaseapp.com",
+      projectId: "TU_PROJECT_ID",
+      storageBucket: "TU_BUCKET.appspot.com",
+      messagingSenderId: "TU_SENDER_ID",
+      appId: "TU_APP_ID"
+    };
+
+    initializeApp(firebaseConfig);
+  </script>
+
+</head>
+
+<body>
+
+  <header class="topbar">
+    <h1>Pato Pato Ganso — Recomendador de Shows</h1>
+    <p class="subtitle">Usa tu cuenta para jugar y recibir una recomendación</p>
+  </header>
+
+  <main class="container">
+
+    <!-- ==========================
+          PANTALLA LOGIN
+    =========================== -->
+    <section id="pantalla-login" class="spa-section">
+      <h2>Iniciar Sesión</h2>
+
+      <div class="auth-box">
+        <input id="loginEmail" class="input" type="email" placeholder="Correo">
+        <input id="loginPass" class="input" type="password" placeholder="Contraseña">
+
+        <button id="btnLogin" class="btn btn-primary">Ingresar</button>
+
+        <p class="link">
+          ¿No tienes cuenta?
+          <a href="#" id="goRegistro">Crear una cuenta</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================
+          PANTALLA REGISTRO
+    =========================== -->
+    <section id="pantalla-registro" class="spa-section">
+      <h2>Crear Cuenta</h2>
+
+      <div class="auth-box">
+        <input id="regNombre" class="input" type="text" placeholder="Nombre">
+        <input id="regEmail" class="input" type="email" placeholder="Correo">
+        <input id="regPass" class="input" type="password" placeholder="Contraseña (mínimo 6 caracteres)">
+
+        <button id="btnCrearCuenta" class="btn btn-primary">Registrarse</button>
+
+        <p class="link">
+          ¿Ya tienes cuenta?
+          <a href="#" id="goLogin">Iniciar sesión</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================
+          PANTALLA DEL JUEGO
+    =========================== -->
+    <section id="pantalla-juego" class="spa-section">
+
+      <div class="controls top-controls">
+        <button id="btnLogout" class="btn">Cerrar Sesión</button>
+
+        <button id="btnFetch" class="btn">Cargar 5 shows</button>
+        <button id="btnStart" class="btn btn-primary" disabled>Iniciar juego</button>
+        <button id="btnReset" class="btn" disabled>Reiniciar</button>
+
+        <div id="status" class="status">Estado: esperando carga</div>
+      </div>
+
+      <section id="cards" class="cards-grid"></section>
+
+    </section>
+
+  </main>
+
+  <!-- Modal ganador -->
+  <div id="winnerModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button id="closeModal" class="modal-close">✕</button>
+      <h2 id="winnerTitle">¡Recomendación!</h2>
+      <div id="winnerBody" class="winner-body"></div>
+      <a id="winnerLink" class="btn btn-primary" target="_blank" rel="noopener">Ver en TVmaze</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+  </footer>
+
+  <!-- Scripts principales -->
+  <script type="module" src="src/main.js"></script>
+  <script type="module" src="src/components/login2.js"></script>
+  <script type="module" src="src/components/registro2.js"></script>
+
+</body>
 </html>
