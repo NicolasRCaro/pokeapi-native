@@ -1,5 +1,5 @@
 {
-  "appId": "com.api.app",
-  "appName": "api",
+  "appId": "com.patoShows.app",
+  "appName": "Pato Shows",
   "webDir": "dist"
 }
